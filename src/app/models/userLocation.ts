@@ -1,4 +1,4 @@
-export class Location {
+export class UserLocation {
     ip: string;
     location: {
         country: string,
