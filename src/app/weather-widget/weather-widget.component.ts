@@ -32,7 +32,7 @@ export class WeatherWidgetComponent implements OnInit{
 
     private async getWeatherRealTime(): Promise<void> {
         const userLocation: LocationSessionData = JSON.parse(sessionStorage.getItem(LOCATION_SESSION_DATA_KEY) as string)
-        // const weatherForecast = await this.weatherService.getWeatherForecast(userLocation.lat, userLocation.lng)
+        // const weatherForecast = await this.weatherService.getDailyWeatherForecast(userLocation.lat, userLocation.lng)
         // console.log(weatherForecast)
     }
 }

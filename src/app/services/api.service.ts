@@ -10,6 +10,7 @@ export class APIService {
     constructor(private http: HttpClient) {}
 
     public get(url: string): Promise<any> {
-        return firstValueFrom(this.http.get(url))
+        var cors_api_url: string = 'https://cors-anywhere.herokuapp.com/';
+        return firstValueFrom(this.http.get(`${cors_api_url}${url}`))
     }
 }
