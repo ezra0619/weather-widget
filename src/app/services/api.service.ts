@@ -10,7 +10,12 @@ export class APIService {
     constructor(private http: HttpClient) {}
 
     public get(url: string): Promise<any> {
-        var cors_api_url: string = 'https://cors-anywhere.herokuapp.com/';
+        const cors_api_url: string = 'https://cors-anywhere.herokuapp.com/';
         return firstValueFrom(this.http.get(`${cors_api_url}${url}`))
+    }
+
+    public post(url: string, body: Record<any,any>): Promise<any> {
+        const cors_api_url: string = 'https://cors-anywhere.herokuapp.com/';
+        return firstValueFrom(this.http.post(`${cors_api_url}${url}`, body))
     }
 }

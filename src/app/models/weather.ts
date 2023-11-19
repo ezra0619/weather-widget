@@ -1,176 +1,227 @@
-class DailyForecast {
-    time: string;
-    values: {
-        cloudBaseAvg: number,
-        cloudBaseMax: number,
-        cloudBaseMin: number,
-        cloudCeilingAvg: number,
-        cloudCeilingMax: number,
-        cloudCeilingMin: number,
-        cloudCoverAvg: number,
-        cloudCoverMax: number,
-        cloudCoverMin: number,
-        dewPointAvg: number,
-        dewPointMax: number,
-        dewPointMin: number,
-        evapotranspirationAvg: number,
-        evapotranspirationMax: number,
-        evapotranspirationMin: number,
-        evapotranspirationSum: number,
-        freezingRainIntensityAvg: number,
-        freezingRainIntensityMax: number,
-        freezingRainIntensityMin: number,
-        humidityAvg: number,
-        humidityMax: number,
-        humidityMin: number,
-        iceAccumulationAvg: number,
-        iceAccumulationLweAvg: number,
-        iceAccumulationLweMax: number,
-        iceAccumulationLweMin: number,
-        iceAccumulationLweSum: number,
-        iceAccumulationMax: number,
-        iceAccumulationMin: number,
-        iceAccumulationSum: number,
-        moonriseTime: string,
-        moonsetTime: string,
-        precipitationProbabilityAvg: number,
-        precipitationProbabilityMax: number,
-        precipitationProbabilityMin: number,
-        pressureSurfaceLevelAvg: number,
-        pressureSurfaceLevelMax: number,
-        pressureSurfaceLevelMin: number,
-        rainAccumulationAvg: number,
-        rainAccumulationLweAvg: number,
-        rainAccumulationLweMax: number,
-        rainAccumulationLweMin: number,
-        rainAccumulationMax: number,
-        rainAccumulationMin: number,
-        rainAccumulationSum: number,
-        rainIntensityAvg: number,
-        rainIntensityMax: number,
-        rainIntensityMin: number,
-        sleetAccumulationAvg: number,
-        sleetAccumulationLweAvg: number,
-        sleetAccumulationLweMax: number,
-        sleetAccumulationLweMin: number,
-        sleetAccumulationLweSum: number,
-        sleetAccumulationMax: number,
-        sleetAccumulationMin: number,
-        sleetIntensityAvg: number,
-        sleetIntensityMax: number,
-        sleetIntensityMin: number,
-        snowAccumulationAvg: number,
-        snowAccumulationLweAvg: number,
-        snowAccumulationLweMax: number,
-        snowAccumulationLweMin: number,
-        snowAccumulationLweSum: number,
-        snowAccumulationMax: number,
-        snowAccumulationMin: number,
-        snowAccumulationSum: number,
-        snowDepthAvg: number,
-        snowDepthMax: number,
-        snowDepthMin: number,
-        snowDepthSum: number,
-        snowIntensityAvg: number,
-        snowIntensityMax: number,
-        snowIntensityMin: number,
-        sunriseTime: string,
-        sunsetTime: string,
-        temperatureApparentAvg: number,
-        temperatureApparentMax: number,
-        temperatureApparentMin: number,
-        temperatureAvg: number,
-        temperatureMax: number,
-        temperatureMin: number,
-        uvHealthConcernAvg: number,
-        uvHealthConcernMax: number,
-        uvHealthConcernMin: number,
-        uvIndexAvg: number,
-        uvIndexMax: number,
-        uvIndexMin: number,
-        visibilityAvg: number,
-        visibilityMax: number,
-        visibilityMin: number,
-        weatherCodeMax: number,
-        weatherCodeMin: number,
-        windDirectionAvg: number,
-        windGustAvg: number,
-        windGustMax: number,
-        windGustMin: number,
-        windSpeedAvg: number,
-        windSpeedMax: number,
-        windSpeedMin: number
+// class Timeline {
+//     public timestep: Timestamp;
+//     public startTime: string;
+//     public endTime: string;
+//     public intervals: Array<WeatherForecast>
+//
+//     constructor(data: Record<string, any> = {}) {
+//         this.timestep = data.timestep;
+//         this.startTime = data.startTime;
+//         this.endTime = data.endTime;
+//         this.intervals = data?.intervals.map((e: WeatherForecast) => new WeatherForecast(e));
+//     }
+// }
+
+export class WeatherForecast {
+    public startTime: string;
+    public values: {
+        temperature: number,
+        weatherCode: number,
+        weatherCodeFullDay: typeof WeatherCodesFullDay
     }
 
     constructor(data: Record<string, any> = {}) {
-        this.time = data.time;
+        this.startTime = data.startTime;
         this.values = data.values;
     }
 }
 
-class WeatherLocation {
-    lat: number;
-    lon: number;
-    name: string;
-    type: string;
-
-    constructor(data: Record<string, any> = {}) {
-        this.lat = data.lat;
-        this.lon = data.lon;
-        this.name = data.name;
-        this.type = data.type;
-    }
+export enum Timestamp {
+    DAILY = '1d',
+    HOURLY = '1h'
 }
 
-export class WeatherForecast {
-    timelines: {
-        daily: Array<DailyForecast>
-    };
-    location: WeatherLocation
-
-    constructor(data: Record<string, any> = {}) {
-        this.timelines = data.timelines;
-        this.timelines.daily = this.timelines.daily.map((e: DailyForecast) => new DailyForecast(e))
-        this.location = data.location;
-    }
+export const WeatherCodesFullDay = {
+    0 : "Unknown",
+    1000 : "Clear, Sunny",
+    1100 : "Mostly Clear",
+    1101 : "Partly Cloudy",
+    1102 : "Mostly Cloudy",
+    1001 : "Cloudy",
+    1103 : "Partly Cloudy and Mostly Clear",
+    2100 : "Light Fog",
+    2101 : "Mostly Clear and Light Fog",
+    2102 : "Partly Cloudy and Light Fog",
+    2103 : "Mostly Cloudy and Light Fog",
+    2106 : "Mostly Clear and Fog",
+    2107 : "Partly Cloudy and Fog",
+    2108 : "Mostly Cloudy and Fog",
+    2000 : "Fog",
+    4204 : "Partly Cloudy and Drizzle",
+    4203 : "Mostly Clear and Drizzle",
+    4205 : "Mostly Cloudy and Drizzle",
+    4000 : "Drizzle",
+    4200 : "Light Rain",
+    4213 : "Mostly Clear and Light Rain",
+    4214 : "Partly Cloudy and Light Rain",
+    4215 : "Mostly Cloudy and Light Rain",
+    4209 : "Mostly Clear and Rain",
+    4208 : "Partly Cloudy and Rain",
+    4210 : "Mostly Cloudy and Rain",
+    4001 : "Rain",
+    4211 : "Mostly Clear and Heavy Rain",
+    4202 : "Partly Cloudy and Heavy Rain",
+    4212 : "Mostly Cloudy and Heavy Rain",
+    4201 : "Heavy Rain",
+    5115 : "Mostly Clear and Flurries",
+    5116 : "Partly Cloudy and Flurries",
+    5117 : "Mostly Cloudy and Flurries",
+    5001 : "Flurries",
+    5100 : "Light Snow",
+    5102 : "Mostly Clear and Light Snow",
+    5103 : "Partly Cloudy and Light Snow",
+    5104 : "Mostly Cloudy and Light Snow",
+    5122 : "Drizzle and Light Snow",
+    5105 : "Mostly Clear and Snow",
+    5106 : "Partly Cloudy and Snow",
+    5107 : "Mostly Cloudy and Snow",
+    5000 : "Snow",
+    5101 : "Heavy Snow",
+    5119 : "Mostly Clear and Heavy Snow",
+    5120 : "Partly Cloudy and Heavy Snow",
+    5121 : "Mostly Cloudy and Heavy Snow",
+    5110 : "Drizzle and Snow",
+    5108 : "Rain and Snow",
+    5114 : "Snow and Freezing Rain",
+    5112 : "Snow and Ice Pellets",
+    6000 : "Freezing Drizzle",
+    6003 : "Mostly Clear and Freezing drizzle",
+    6002 : "Partly Cloudy and Freezing drizzle",
+    6004 : "Mostly Cloudy and Freezing drizzle",
+    6204 : "Drizzle and Freezing Drizzle",
+    6206 : "Light Rain and Freezing Drizzle",
+    6205 : "Mostly Clear and Light Freezing Rain",
+    6203 : "Partly Cloudy and Light Freezing Rain",
+    6209 : "Mostly Cloudy and Light Freezing Rain",
+    6200 : "Light Freezing Rain",
+    6213 : "Mostly Clear and Freezing Rain",
+    6214 : "Partly Cloudy and Freezing Rain",
+    6215 : "Mostly Cloudy and Freezing Rain",
+    6001 : "Freezing Rain",
+    6212 : "Drizzle and Freezing Rain",
+    6220 : "Light Rain and Freezing Rain",
+    6222 : "Rain and Freezing Rain",
+    6207 : "Mostly Clear and Heavy Freezing Rain",
+    6202 : "Partly Cloudy and Heavy Freezing Rain",
+    6208 : "Mostly Cloudy and Heavy Freezing Rain",
+    6201 : "Heavy Freezing Rain",
+    7110 : "Mostly Clear and Light Ice Pellets",
+    7111 : "Partly Cloudy and Light Ice Pellets",
+    7112 : "Mostly Cloudy and Light Ice Pellets",
+    7102 : "Light Ice Pellets",
+    7108 : "Mostly Clear and Ice Pellets",
+    7107 : "Partly Cloudy and Ice Pellets",
+    7109 : "Mostly Cloudy and Ice Pellets",
+    7000 : "Ice Pellets",
+    7105 : "Drizzle and Ice Pellets",
+    7106 : "Freezing Rain and Ice Pellets",
+    7115 : "Light Rain and Ice Pellets",
+    7117 : "Rain and Ice Pellets",
+    7103 : "Freezing Rain and Heavy Ice Pellets",
+    7113 : "Mostly Clear and Heavy Ice Pellets",
+    7114 : "Partly Cloudy and Heavy Ice Pellets",
+    7116 : "Mostly Cloudy and Heavy Ice Pellets",
+    7101 : "Heavy Ice Pellets",
+    8001 : "Mostly Clear and Thunderstorm",
+    8003 : "Partly Cloudy and Thunderstorm",
+    8002 : "Mostly Cloudy and Thunderstorm",
+    8000 : "Thunderstorm"
 }
 
-export class RealTimeWeather {
-    data: {
-        time: string,
-        values: {
-            cloudBase: number,
-            cloudCeiling: null,
-            cloudCover: number,
-            dewPoint: number,
-            freezingRainIntensity: number,
-            humidity: number,
-            precipitationProbability: number,
-            pressureSurfaceLevel: number,
-            rainIntensity: number,
-            sleetIntensity: number,
-            snowIntensity: number,
-            temperature: number,
-            temperatureApparent: number,
-            uvHealthConcern: number,
-            uvIndex: number,
-            visibility: number,
-            weatherCode: number,
-            windDirection: number,
-            windGust: number,
-            windSpeed: number
-        }
-    };
-    location: {
-        lat: number,
-        lon: number,
-        name: string,
-        type: string
-    }
-
-    constructor(data: Record<string, any> = {}) {
-        this.data = data.data;
-        this.location = data.location;
-    }
+// TODO
+export const WeatherCodesDay = {
+    0: "Unknown",
+    10000: "Clear, Sunny",
+    11000: "Mostly Clear",
+    11010: "Partly Cloudy",
+    11020: "Mostly Cloudy",
+    10010: "Cloudy",
+    11030: "Partly Cloudy and Mostly Clear",
+    21000: "Light Fog",
+    21010: "Mostly Clear and Light Fog",
+    21020: "Partly Cloudy and Light Fog",
+    21030: "Mostly Cloudy and Light Fog",
+    21060: "Mostly Clear and Fog",
+    21070: "Partly Cloudy and Fog",
+    21080: "Mostly Cloudy and Fog",
+    20000: "Fog",
+    42040: "Partly Cloudy and Drizzle",
+    42030: "Mostly Clear and Drizzle",
+    42050: "Mostly Cloudy and Drizzle",
+    40000: "Drizzle",
+    42000: "Light Rain",
+    42130: "Mostly Clear and Light Rain",
+    42140: "Partly Cloudy and Light Rain",
+    42150: "Mostly Cloudy and Light Rain",
+    42090: "Mostly Clear and Rain",
+    42080: "Partly Cloudy and Rain",
+    42100: "Mostly Cloudy and Rain",
+    40010: "Rain",
+    42110: "Mostly Clear and Heavy Rain",
+    42020: "Partly Cloudy and Heavy Rain",
+    42120: "Mostly Cloudy and Heavy Rain",
+    42010: "Heavy Rain",
+    51150: "Mostly Clear and Flurries",
+    51160: "Partly Cloudy and Flurries",
+    51170: "Mostly Cloudy and Flurries",
+    50010: "Flurries",
+    51000: "Light Snow",
+    51020: "Mostly Clear and Light Snow",
+    51030: "Partly Cloudy and Light Snow",
+    51040: "Mostly Cloudy and Light Snow",
+    51220: "Drizzle and Light Snow",
+    51050: "Mostly Clear and Snow",
+    51060: "Partly Cloudy and Snow",
+    51070: "Mostly Cloudy and Snow",
+    50000: "Snow",
+    51010: "Heavy Snow",
+    51190: "Mostly Clear and Heavy Snow",
+    51200: "Partly Cloudy and Heavy Snow",
+    51210: "Mostly Cloudy and Heavy Snow",
+    51100: "Drizzle and Snow",
+    51080: "Rain and Snow",
+    51140: "Snow and Freezing Rain",
+    51120: "Snow and Ice Pellets",
+    60000: "Freezing Drizzle",
+    60030: "Mostly Clear and Freezing drizzle",
+    60020: "Partly Cloudy and Freezing drizzle",
+    60040: "Mostly Cloudy and Freezing drizzle",
+    62040: "Drizzle and Freezing Drizzle",
+    62060: "Light Rain and Freezing Drizzle",
+    62050: "Mostly Clear and Light Freezing Rain",
+    62030: "Partly Cloudy and Light Freezing Rain",
+    62090: "Mostly Cloudy and Light Freezing Rain",
+    62000: "Light Freezing Rain",
+    62130: "Mostly Clear and Freezing Rain",
+    62140: "Partly Cloudy and Freezing Rain",
+    62150: "Mostly Cloudy and Freezing Rain",
+    60010: "Freezing Rain",
+    62120: "Drizzle and Freezing Rain",
+    62200: "Light Rain and Freezing Rain",
+    62220: "Rain and Freezing Rain",
+    62070: "Mostly Clear and Heavy Freezing Rain",
+    62020: "Partly Cloudy and Heavy Freezing Rain",
+    62080: "Mostly Cloudy and Heavy Freezing Rain",
+    62010: "Heavy Freezing Rain",
+    71100: "Mostly Clear and Light Ice Pellets",
+    71110: "Partly Cloudy and Light Ice Pellets",
+    71120: "Mostly Cloudy and Light Ice Pellets",
+    71020: "Light Ice Pellets",
+    71080: "Mostly Clear and Ice Pellets",
+    71070: "Partly Cloudy and Ice Pellets",
+    71090: "Mostly Cloudy and Ice Pellets",
+    70000: "Ice Pellets",
+    71050: "Drizzle and Ice Pellets",
+    71060: "Freezing Rain and Ice Pellets",
+    71150: "Light Rain and Ice Pellets",
+    71170: "Rain and Ice Pellets",
+    71030: "Freezing Rain and Heavy Ice Pellets",
+    71130: "Mostly Clear and Heavy Ice Pellets",
+    71140: "Partly Cloudy and Heavy Ice Pellets",
+    71160: "Mostly Cloudy and Heavy Ice Pellets",
+    71010: "Heavy Ice Pellets",
+    80010: "Mostly Clear and Thunderstorm",
+    80030: "Partly Cloudy and Thunderstorm",
+    80020: "Mostly Cloudy and Thunderstorm",
+    80000: "Thunderstorm"
 }
-

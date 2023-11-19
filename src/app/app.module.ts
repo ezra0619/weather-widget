@@ -4,6 +4,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {WeatherWidgetComponent} from "./weather-widget/weather-widget.component";
+import {NgxAsyncTemplateModule} from "@klippa/ngx-async-template";
 
 @NgModule({
     declarations: [
@@ -14,6 +15,8 @@ import {WeatherWidgetComponent} from "./weather-widget/weather-widget.component"
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        NgxAsyncTemplateModule,
+
     ],
     providers: [HttpClientModule],
     bootstrap: [AppComponent]

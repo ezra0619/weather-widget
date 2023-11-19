@@ -1,0 +1,42 @@
+<ngx-async-template [promise]="dailyWeatherForecastPromise">
+    <ng-template ngx-async-pending>
+        loading
+    </ng-template>
+    <ng-template ngx-async-success let-forecast="value">
+        <div class="weatherContainer">
+            <div class="todayForecastContainer">
+                <div class="headerContainerInfo">
+                    <div class="cityContainer">{{userLocation.city}}</div>
+                    <div class="degreesContainer">{{forecast[0].values.temperature}}°C</div>
+                </div>
+                <div class="footerContainerInfo">
+                    <div>
+                        <div class="dayOfWeekContainer">Today</div>
+                        <div class="forecastDetailsContainer">
+                            <div>50%</div>
+                            <div>East, 20km/h</div>
+                            <div>1010hPa</div>
+                        </div>
+                    </div>
+                    <div class="todayForecastImageContainer">image</div>
+                </div>
+            </div>
+            <div class="futureForecastContainer">
+                <div class="verticalWeatherCard" *ngFor="let futureForecast of getFutureForecasts(forecast)">
+                    <div>
+                        image
+<!--                        <img-->
+<!--                            [src]="'/assets/images/logo/logo-{{ theme }}-sm.png'"-->
+<!--                        />-->
+                    </div>
+                    <div>{{getDayOfWeekForDate(futureForecast.startTime)}}</div>
+                    <div>{{futureForecast.values.temperature}}°C</div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template ngx-async-error let-myErrors="errorMessages">
+        something went wrong {{myErrors}}
+    </ng-template>
+</ngx-async-template>
+

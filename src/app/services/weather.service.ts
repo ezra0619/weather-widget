@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {APIService} from "./api.service";
 import {getUrlWithQueryParams} from "../utils/objects";
 import {environment} from "../../environments/environment.development";
-import {RealTimeWeather, WeatherForecast} from "../models/weather";
+import {WeatherForecast} from "../models/weather";
 
 
 @Injectable({providedIn: 'root'})
@@ -11,27 +11,27 @@ export class WeatherService {
 
     constructor(private apiService: APIService) {}
 
-    public getDailyWeatherForecast(lat: string, lng: string): Promise<any> {
+    public getDailyWeatherForecast(lat: string, lng: string): Promise<Array<WeatherForecast>> {
+        const body = {
+            location: [lat, lng].join(','),
+            fields: [
+                "temperature",
+                "weatherCodeFullDay"
+            ],
+            units: "metric",
+            timesteps: [
+                "1d"
+            ],
+            startTime: "now",
+            endTime: "nowPlus4d"
+        }
         const url: string = getUrlWithQueryParams(
-            `${environment.weatherApiRootUrl}/forecast`, {
-                location: [lat, lng].join(','),
-                timesteps: '1d',
+            `${environment.weatherApiRootUrl}/timelines`, {
                 apikey: environment.weatherApiKey
             })
         return this.apiService
-            .get(url)
-            .then((e) => new WeatherForecast(e))
-    }
+            .post(url, body)
+            .then((res) =>  res.data.timelines[0].intervals.map((e: any) => new WeatherForecast(e)))
 
-    public getWeatherRealTime(lat: string, lng: string): Promise<any> {
-        const url: string = getUrlWithQueryParams(
-            `${environment.weatherApiRootUrl}/realtime`, {
-                location: [lat, lng].join(','),
-                apikey: environment.weatherApiKey
-            })
-        return this.apiService
-            .get(url)
-            .then((e) => new RealTimeWeather(e))
     }
-
 }
