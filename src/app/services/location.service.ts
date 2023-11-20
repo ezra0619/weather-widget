@@ -15,6 +15,11 @@ export class LocationService {
 				apiKey: environment.locationApiKey,
 			},
 		);
-		return this.apiService.get(url).then((e) => new UserLocationData(e));
+		return this.apiService
+			.get(url)
+			.then((e) => new UserLocationData(e))
+			.catch((e) => {
+				throw e;
+			});
 	}
 }

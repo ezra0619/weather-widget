@@ -48,11 +48,11 @@ export class WeatherWidgetComponent implements OnInit {
 			) as Array<WeatherForecast>,
 		);
 		console.log(await this.dailyWeatherForecastPromise);
-		sessionStorage.setItem(
-			'andreea',
-			JSON.stringify(await this.getDailyWeatherForecast()),
-		);
-		// this.dailyWeatherForecastPromise =  this.getDailyWeatherForecast()
+		// sessionStorage.setItem(
+		// 	'andreea',
+		// 	JSON.stringify(await this.getDailyWeatherForecast()),
+		// );
+		// this.dailyWeatherForecastPromise = this.getDailyWeatherForecast();
 	}
 
 	private async setSessionData(): Promise<void> {

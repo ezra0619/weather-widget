@@ -23,6 +23,17 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+
+	.cityContainer {
+		font-size: 130%;
+		font-weight: bold;
+		letter-spacing: 2px;
+	}
+
+	.degreesContainer {
+		font-size: 250%;
+		letter-spacing: 5px;
+	}
 }
 
 .futureForecastContainer {
@@ -41,21 +52,10 @@
 	justify-content: space-between;
 }
 
-.cityContainer {
-	font-size: 130%;
-	font-weight: bold;
-	letter-spacing: 2px;
-}
-
 .dayOfWeekContainer {
 	font-size: 120%;
 	font-weight: bold;
 	letter-spacing: 2px;
-}
-
-.degreesContainer {
-	font-size: 250%;
-	letter-spacing: 5px;
 }
 
 .forecastDetailsContainer {
@@ -105,6 +105,34 @@
 
 i {
 	margin-right: 5px;
+}
+
+.errorsContainer,
+.loadingSpinnerContainer {
+	min-width: 300px;
+	max-width: 500px;
+	height: 40px;
+	font-family: 'Forum', serif;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.loadingSpinnerContainer {
+	color: #10149e;
+
+	span {
+		font-weight: bold;
+		font-size: 150%;
+		margin-right: 10px;
+	}
+}
+
+.errorsContainer {
+	font-weight: bold;
+	font-size: 150%;
+	color: red;
 }
 
 @media only screen and (max-width: 400px) {

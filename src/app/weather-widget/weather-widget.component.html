@@ -1,5 +1,15 @@
 <ngx-async-template [promise]="dailyWeatherForecastPromise">
-	<ng-template ngx-async-pending> loading </ng-template>
+	<ng-template ngx-async-pending>
+		<div class="loadingSpinnerContainer">
+			<span>Loading data</span>
+			<div>
+				<i
+					class="fa-solid fa-spinner fa-spin fa-xl"
+					style="color: #10149e"
+				></i>
+			</div>
+		</div>
+	</ng-template>
 	<ng-template ngx-async-success let-forecast="value">
 		<div class="weatherContainer">
 			<div class="todayForecastContainer">
@@ -64,7 +74,9 @@
 			</div>
 		</div>
 	</ng-template>
-	<ng-template ngx-async-error let-myErrors="errorMessages">
-		something went wrong {{ myErrors }}
+	<ng-template ngx-async-error let-error="errorMessages">
+		<div class="errorsContainer">
+			Something went wrong : {{ error.error | json }}
+		</div>
 	</ng-template>
 </ngx-async-template>

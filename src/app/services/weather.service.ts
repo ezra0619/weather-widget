@@ -38,6 +38,9 @@ export class WeatherService {
 				res.data.timelines[0].intervals.map(
 					(e: any) => new WeatherForecast(e),
 				),
-			);
+			)
+			.catch((e) => {
+				throw e;
+			});
 	}
 }
