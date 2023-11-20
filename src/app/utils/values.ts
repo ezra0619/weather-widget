@@ -1,9 +1,9 @@
-import {isString} from "lodash";
+import { isString } from 'lodash';
 
 export function stringIsSetAndFilled(value: any): boolean {
-    return isString(value) && value.length > 0;
+	return isString(value) && value.length > 0;
 }
 
 export function isValueSet(value: any): boolean {
-    return value !== null && value !== undefined;
+	return value !== null && value !== undefined;
 }

@@ -1,45 +1,70 @@
 <ngx-async-template [promise]="dailyWeatherForecastPromise">
-    <ng-template ngx-async-pending>
-        loading
-    </ng-template>
-    <ng-template ngx-async-success let-forecast="value">
-        <div class="weatherContainer">
-            <div class="todayForecastContainer">
-                <div class="headerContainerInfo">
-                    <div class="cityContainer">{{userLocation.city}}</div>
-                    <div class="degreesContainer">{{forecast[0].values.temperature}}°C</div>
-                </div>
-                <div class="footerContainerInfo">
-                    <div>
-                        <div class="dayOfWeekContainer">Today</div>
-                        <div class="forecastDetailsContainer">
-                            <div>50%</div>
-                            <div>East, 20km/h</div>
-                        </div>
-                    </div>
-                    <div class="todayForecastImageContainer">
-						<div class="todayForecastDescription">
-							{{getWeatherDescription(forecast[0].values.weatherCodeDay)}}
+	<ng-template ngx-async-pending> loading </ng-template>
+	<ng-template ngx-async-success let-forecast="value">
+		<div class="weatherContainer">
+			<div class="todayForecastContainer">
+				<div class="headerContainerInfo">
+					<div class="cityContainer">{{ userLocation.city }}</div>
+					<div class="degreesContainer">
+						{{ forecast[0].values.temperature }}°C
+					</div>
+				</div>
+				<div class="footerContainerInfo">
+					<div>
+						<div class="dayOfWeekContainer">Today</div>
+						<div class="forecastDetailsContainer">
+							<div>
+								<i class="fa-solid fa-droplet"></i>
+								{{ forecast[0].values.humidity }} %
+							</div>
+							<div>
+								<i class="fa-solid fa-wind"></i>
+								{{ forecast[0].values.windSpeed }} m/s
+							</div>
 						</div>
-						<img class="todayForecastImage"
-							src="assets/icons/{{forecast[0].values.weatherCodeDay}}_small@2x.png"
+					</div>
+					<div class="todayForecastImageContainer">
+						<div class="todayForecastDescription">
+							{{
+								getWeatherDescription(
+									forecast[0].values.weatherCodeDay
+								)
+							}}
+						</div>
+						<img
+							class="todayForecastImage"
+							src="assets/icons/{{
+								forecast[0].values.weatherCodeDay
+							}}_small@2x.png"
 						/>
 					</div>
-                </div>
-            </div>
-            <div class="futureForecastContainer" *ngIf="variant === WidgetVariant.SPACIOUS">
-                <div class="verticalWeatherCard" *ngFor="let futureForecast of getFutureForecasts(forecast)">
-					<img class="futureForecastImage"
-						src="assets/icons/{{futureForecast.values.weatherCodeDay}}_small@2x.png"
+				</div>
+			</div>
+			<div
+				class="futureForecastContainer"
+				*ngIf="variant === WidgetVariant.SPACIOUS"
+			>
+				<div
+					class="verticalWeatherCard"
+					*ngFor="let futureForecast of getFutureForecasts(forecast)"
+				>
+					<img
+						class="futureForecastImage"
+						src="assets/icons/{{
+							futureForecast.values.weatherCodeDay
+						}}_small@2x.png"
 					/>
-                    <div>{{getDayOfWeekForDate(futureForecast.startTime)}}</div>
-                    <div class="futureForecastTemperature">{{futureForecast.values.temperature}}°C</div>
-                </div>
-            </div>
-        </div>
-    </ng-template>
-    <ng-template ngx-async-error let-myErrors="errorMessages">
-        something went wrong {{myErrors}}
-    </ng-template>
+					<div>
+						{{ getDayOfWeekForDate(futureForecast.startTime) }}
+					</div>
+					<div class="futureForecastTemperature">
+						{{ futureForecast.values.temperature }}°C
+					</div>
+				</div>
+			</div>
+		</div>
+	</ng-template>
+	<ng-template ngx-async-error let-myErrors="errorMessages">
+		something went wrong {{ myErrors }}
+	</ng-template>
 </ngx-async-template>
-

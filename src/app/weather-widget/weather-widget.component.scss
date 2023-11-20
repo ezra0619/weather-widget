@@ -1,7 +1,8 @@
+@import '@fortawesome/fontawesome-free/css/all.css';
+
 :host {
 	display: block;
 }
-
 
 .weatherContainer {
 	font-family: 'Forum', serif;
@@ -102,6 +103,18 @@
 	}
 }
 
+i {
+	margin-right: 5px;
+}
 
+@media only screen and (max-width: 400px) {
+	.verticalWeatherCard {
+		font-size: 90%;
+
+		.futureForecastImage {
+			width: 60%;
+		}
+	}
+}
 
 
