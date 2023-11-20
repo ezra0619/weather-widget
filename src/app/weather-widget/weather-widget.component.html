@@ -15,22 +15,25 @@
                         <div class="forecastDetailsContainer">
                             <div>50%</div>
                             <div>East, 20km/h</div>
-                            <div>1010hPa</div>
                         </div>
                     </div>
-                    <div class="todayForecastImageContainer">image</div>
+                    <div class="todayForecastImageContainer">
+						<div class="todayForecastDescription">
+							{{getWeatherDescription(forecast[0].values.weatherCodeDay)}}
+						</div>
+						<img class="todayForecastImage"
+							src="assets/icons/{{forecast[0].values.weatherCodeDay}}_small@2x.png"
+						/>
+					</div>
                 </div>
             </div>
-            <div class="futureForecastContainer">
+            <div class="futureForecastContainer" *ngIf="variant === WidgetVariant.SPACIOUS">
                 <div class="verticalWeatherCard" *ngFor="let futureForecast of getFutureForecasts(forecast)">
-                    <div>
-                        image
-<!--                        <img-->
-<!--                            [src]="'/assets/images/logo/logo-{{ theme }}-sm.png'"-->
-<!--                        />-->
-                    </div>
+					<img class="futureForecastImage"
+						src="assets/icons/{{futureForecast.values.weatherCodeDay}}_small@2x.png"
+					/>
                     <div>{{getDayOfWeekForDate(futureForecast.startTime)}}</div>
-                    <div>{{futureForecast.values.temperature}}°C</div>
+                    <div class="futureForecastTemperature">{{futureForecast.values.temperature}}°C</div>
                 </div>
             </div>
         </div>

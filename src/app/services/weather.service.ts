@@ -16,14 +16,15 @@ export class WeatherService {
             location: [lat, lng].join(','),
             fields: [
                 "temperature",
-                "weatherCodeFullDay"
+                "weatherCodeDay",
+	            "weatherCodeNight"
             ],
             units: "metric",
             timesteps: [
                 "1d"
             ],
             startTime: "now",
-            endTime: "nowPlus4d"
+            endTime: "nowPlus5d"
         }
         const url: string = getUrlWithQueryParams(
             `${environment.weatherApiRootUrl}/timelines`, {

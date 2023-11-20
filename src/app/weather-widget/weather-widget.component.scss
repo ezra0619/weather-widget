@@ -1,75 +1,107 @@
 :host {
-  display: block;
+	display: block;
 }
 
 
 .weatherContainer {
-  font-family: 'Forum', serif;
-  color: white;
-  height: 250px;
-  width: 400px;
-  background: rgb(70,205,252);
-  background: radial-gradient(circle, rgba(70,205,252,1) 0%, rgba(44,73,222,1) 100%);
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+	font-family: 'Forum', serif;
+	color: white;
+	min-width: 300px;
+	max-width: 500px;
+	height: auto;
+	background: rgb(70, 205, 252);
+	background: radial-gradient(circle, rgba(70, 205, 252, 1) 0%, rgba(44, 73, 222, 1) 100%);
+	border-radius: 10px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
 }
 
 .todayForecastContainer {
-  height: 60%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+	height: 60%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .futureForecastContainer {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 20px;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 20px;
 }
 
 .headerContainerInfo,
-.footerContainerInfo{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.footerContainerInfo {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .cityContainer {
-  font-size: 130%;
-  font-weight: bold;
-  letter-spacing: 2px;
+	font-size: 130%;
+	font-weight: bold;
+	letter-spacing: 2px;
 }
 
 .dayOfWeekContainer {
-  font-size: 120%;
-  font-weight: bold;
-  letter-spacing: 2px;
+	font-size: 120%;
+	font-weight: bold;
+	letter-spacing: 2px;
 }
 
 .degreesContainer {
-  font-size: 250%;
-  letter-spacing: 5px;
+	font-size: 250%;
+	letter-spacing: 5px;
 }
 
 .forecastDetailsContainer {
-  padding-top: 10px;
-  font-size: 90%;
+	padding-top: 10px;
+	font-size: 100%;
 }
 
 
 .verticalWeatherCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 18%;
-  padding: 5px;
-  border-radius: 10px;
-  background: rgba(255,255,255, 0.2);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 14%;
+	padding: 15px 5px;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.2);
+
+	.futureForecastImage {
+		width: 50%;
+		height: auto;
+		margin-bottom: 5px;
+	}
+
+	.futureForecastTemperature {
+		margin-top: 5px;
+	}
 }
+
+.todayForecastImageContainer {
+	display: flex;
+	flex-direction: row;
+	height: auto;
+	align-items: center;
+
+	.todayForecastImage {
+		height: 48px;
+		width: 48px;
+		margin-left: 10px;
+	}
+
+	.todayForecastDescription {
+		font-size: 140%;
+		font-weight: bold;
+	}
+}
+
+
 
 
