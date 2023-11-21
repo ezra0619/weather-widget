@@ -31,14 +31,7 @@ export class WeatherWidgetComponent implements OnInit {
 
 	public async ngOnInit(): Promise<void> {
 		await this.setUserLocationData();
-		// this.setDailyWeatherForecast();
-
-		// // TODO - delete
-		this.dailyWeatherForecastPromise = Promise.resolve(
-			JSON.parse(
-				sessionStorage.getItem('andreea') as string,
-			) as Array<WeatherForecast>,
-		);
+		this.setDailyWeatherForecast();
 	}
 
 	private async setUserLocationData(): Promise<void> {
