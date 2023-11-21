@@ -28,3 +28,5 @@ COMPACT
 	[variant]="WidgetVariant.COMPACT"
 ></andreea-weather-widget>
 ```
+
+![Screenshot 2023-11-21 at 21 32 38](https://github.com/ezra0619/weather-widget/assets/63120475/f542020b-a16c-4309-81c7-4b5fc06264c6)
