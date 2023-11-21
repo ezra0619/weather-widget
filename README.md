@@ -1,27 +1,30 @@
-# WeatherWidget
+# AndreeaWeatherWidget
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+Features
 
-## Development server
+* Daily forecast up to a max of 6 days based on user location
+* Ability to update location
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The Widget is responsive and has 2 variants, compact and spacious, to better suit the needs of the user.
 
-## Code scaffolding
+SPACIOUS 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![Screenshot 2023-11-21 at 21 31 36](https://github.com/ezra0619/weather-widget/assets/63120475/69272349-b4e8-4fe5-9951-223fb35cb864)
 
-## Build
+![Screenshot 2023-11-21 at 20 45 49](https://github.com/ezra0619/weather-widget/assets/63120475/621c3807-386b-4441-818a-a6c43762cde5)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+<andreea-weather-widget
+	[variant]="WidgetVariant.SPACIOUS"
+></andreea-weather-widget>
+```
 
-## Running unit tests
+COMPACT
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Screenshot 2023-11-21 at 21 32 00](https://github.com/ezra0619/weather-widget/assets/63120475/d85b8b78-9462-423d-bf6c-164a8f1104a3)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+<andreea-weather-widget
+	[variant]="WidgetVariant.COMPACT"
+></andreea-weather-widget>
+```
