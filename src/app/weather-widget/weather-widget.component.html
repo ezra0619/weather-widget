@@ -14,7 +14,19 @@
 		<div class="weatherContainer">
 			<div class="todayForecastContainer">
 				<div class="headerContainerInfo">
-					<div class="cityContainer">{{ userLocation.city }}</div>
+					<div class="cityContainer">
+						<span class="cityText">{{ userLocation.city }}</span>
+						<button
+							class="refreshUserLocationButton"
+							(click)="updateForecastBasedOnUpdatedUserLocation()"
+							[title]="'Update your current location.'"
+						>
+							<i
+								class="fa-solid fa-arrows-rotate fa-sm"
+								style="color: #ffffff"
+							></i>
+						</button>
+					</div>
 					<div class="degreesContainer">
 						{{ forecast[0].values.temperature }}°C
 					</div>
@@ -76,7 +88,8 @@
 	</ng-template>
 	<ng-template ngx-async-error let-error="errorMessages">
 		<div class="errorsContainer">
-			Something went wrong : {{ error.error | json }}
+			<span> Oops! Something went wrong. </span>
+			<span> Error: {{ error.error | json }} </span>
 		</div>
 	</ng-template>
 </ngx-async-template>

@@ -3,7 +3,6 @@ export class WeatherForecast {
 	public values: {
 		temperature: number;
 		weatherCodeDay: number;
-		weatherCodeNight: number;
 		humidity: number;
 		windSpeed: number;
 	};

@@ -9,18 +9,12 @@ export class WeatherService {
 	constructor(private apiService: APIService) {}
 
 	public getDailyWeatherForecast(
-		lat: string,
-		lng: string,
+		lat: number,
+		lng: number,
 	): Promise<Array<WeatherForecast>> {
 		const body = {
 			location: [lat, lng].join(','),
-			fields: [
-				'temperature',
-				'weatherCodeDay',
-				'weatherCodeNight',
-				'humidity',
-				'windSpeed',
-			],
+			fields: ['temperature', 'weatherCodeDay', 'humidity', 'windSpeed'],
 			units: 'metric',
 			timesteps: [Timestamp.DAILY],
 			startTime: 'now',
