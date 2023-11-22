@@ -4,6 +4,7 @@ Features
 
 * Daily forecast up to a max of 6 days based on user location
 * Ability to update location
+* Forecast is automatically updated on day change
 
 The Widget is responsive and has 2 variants, compact and spacious, to better suit the needs of the user.
 
